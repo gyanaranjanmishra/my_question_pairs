@@ -400,7 +400,7 @@ def vectorize_question_pair(q1, q2, model):
     return q1_vec, q2_vec
 
 
-def query_point_creator(q1, q2):
+def query_point_creator(q1, q2,modelword2vec):
     input_query = []
 
     # preprocess

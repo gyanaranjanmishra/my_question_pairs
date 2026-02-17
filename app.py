@@ -15,12 +15,11 @@ nltk.data.path.append(NLTK_DIR)
 FILES = {
     "my_rf_model.pkl": "1aC6O164kYnSHeq0x1TKDYZM7DOfgCs3G",
 
-    "my_modelword2vec.model": "1_AhadSBraF4rt6_zTM3qG9u_aDxS1Xu8",
+    "my_modelword2vec.model": "1XoGvL830MpRaThkNCH_DNDHVjkiwbriC",
+    "my_modelword2vec.model.syn1neg.npy": "13YNXXTELRfhBaJWU4l28rlwbT5gl01AL",
+    "my_modelword2vec.model.wv.vectors.npy": "1Ixv9CPmf8wZlQDqA3YcE_FPWwQhziTZs"
 
-    "my_modelword2vec.model.wv.vectors.npy": "18HZC9wCZSTJJFgPqqMhxEZL-_CMcf9O-",
-
-    "my_modelword2vec.model.syn1neg.npy": "1Pm_J8O3gvUDci_dr-LXy2rk8P3EhYc21", 
-}    
+     }    
 
 def download_models():
 

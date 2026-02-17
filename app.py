@@ -434,7 +434,7 @@ def query_point_creator(q1, q2,modelword2vec):
     q1_word2vec, q2_word2vec = vectorize_question_pair(q1, q2, modelword2vec)
 
     
-    return np.hstack((np.array(input_query).reshape(1, 22), q1_word2vec.reshape(1, size), q2_word2vec.reshape(1, size)))
+    return np.hstack((np.array(input_query).reshape(1, 22), q1_word2vec.reshape(1, -1), q2_word2vec.reshape(1, -1)))
 
 
 

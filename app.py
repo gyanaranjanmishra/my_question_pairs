@@ -1,4 +1,26 @@
 import os
+import gdown
+
+RF_FILE = "my_rf_model.model"
+W2V_FILE = "my_modelword2vec.pkl"
+
+
+RF_ID = "1aC6O164kYnSHeq0x1TKDYZM7DOfgCs3G"
+W2V_ID = "1_AhadSBraF4rt6_zTM3qG9u_aDxS1Xu8"
+
+def download_if_missing(file_id, output):
+
+    if not os.path.exists(output):
+
+        url = f"https://drive.google.com/uc?id={file_id}"
+
+        print(f"Downloading {output}...")
+        gdown.download(url, output, quiet=False)
+
+
+download_if_missing(RF_ID, RF_FILE)
+download_if_missing(W2V_ID, W2V_FILE)
+
 import nltk
 
 nltk.data.path.append(os.path.expanduser("~/nltk_data"))

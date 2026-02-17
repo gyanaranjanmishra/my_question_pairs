@@ -1,26 +1,36 @@
 import os
 import gdown
 
-RF_FILE = "my_rf_model.pkl"
-W2V_FILE = "my_modelword2vec.model"
+MODEL_DIR = "models"
+os.makedirs(MODEL_DIR, exist_ok=True)
 
 
-RF_ID = "1aC6O164kYnSHeq0x1TKDYZM7DOfgCs3G"
-W2V_ID = "1_AhadSBraF4rt6_zTM3qG9u_aDxS1Xu8"
+FILES = {
+    "my_rf_model.pkl": "1aC6O164kYnSHeq0x1TKDYZM7DOfgCs3G",
 
-def download_if_missing(file_id, output):
+    "my_modelword2vec.model": "1_AhadSBraF4rt6_zTM3qG9u_aDxS1Xu8",
 
-    if not os.path.exists(output):
+    "my_modelword2vec.model.wv.vectors.npy": "18HZC9wCZSTJJFgPqqMhxEZL-_CMcf9O-",
 
-        url = f"https://drive.google.com/uc?id={file_id}"
+    "my_modelword2vec.model.syn1neg.npy": "https://drive.google.com/file/d/1Pm_J8O3gvUDci_dr-LXy2rk8P3EhYc21" 
+}
 
-        print(f"Downloading {output}...")
-        gdown.download(url, output, quiet=False)
+def download_models():
+
+    for name, fid in FILES.items():
+
+        path = os.path.join(MODEL_DIR, name)
+
+        if not os.path.exists(path):
+
+            url = f"https://drive.google.com/uc?id={fid}"
+
+            print(f"Downloading {name}")
+
+            gdown.download(url, path, quiet=False)
 
 
-download_if_missing(RF_ID, RF_FILE)
-download_if_missing(W2V_ID, W2V_FILE)
-
+download_models()
 import nltk
 
 nltk.data.path.append(os.path.expanduser("~/nltk_data"))
@@ -399,9 +409,9 @@ def load_models():
     from gensim.models import Word2Vec
     import pickle
 
-    modelword2vec = Word2Vec.load("my_modelword2vec.model")
+    modelword2vec = Word2Vec.load("models/my_modelword2vec.model")
 
-    with open("my_rf_model.pkl", "rb") as f:
+    with open("models/my_rf_model.pkl", "rb") as f:
         clf = pickle.load(f)
 
     return modelword2vec, clf

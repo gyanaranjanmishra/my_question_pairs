@@ -466,6 +466,7 @@ if st.button("Predict"):
         with st.spinner("Processing..."):
 
             X= query_point_creator(q1, q2)
+            st.write("X shape:", X.shape)
 
             pred = clf.predict(X)[0]
             prob = clf.predict_proba(X)[0].max()

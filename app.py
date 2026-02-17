@@ -36,26 +36,7 @@ def download_models():
             gdown.download(url, path, quiet=False)
 
 
-download_models()
 
-# -------------------------
-# Load Models
-# -------------------------
-@st.cache_resource
-def load_models():
-
-    from gensim.models import Word2Vec
-    import pickle
-
-    model_path = os.path.join(MODEL_DIR, "my_modelword2vec.model")
-    rf_path = os.path.join(MODEL_DIR, "my_rf_model.pkl")
-
-    modelword2vec = Word2Vec.load(model_path)
-
-    with open(rf_path, "rb") as f:
-        clf = pickle.load(f)
-
-    return modelword2vec, clf
 
 
 def download_nltk():
@@ -85,6 +66,28 @@ from nltk.stem import WordNetLemmatizer
 
 
 stop_words = set(stopwords.words("english"))
+
+download_models()
+
+# -------------------------
+# Load Models
+# -------------------------
+@st.cache_resource
+def load_models():
+
+    from gensim.models import Word2Vec
+    import pickle
+
+    model_path = os.path.join(MODEL_DIR, "my_modelword2vec.model")
+    rf_path = os.path.join(MODEL_DIR, "my_rf_model.pkl")
+
+    modelword2vec = Word2Vec.load(model_path)
+
+    with open(rf_path, "rb") as f:
+        clf = pickle.load(f)
+
+    return modelword2vec, clf
+
 
 
 # -------------------------

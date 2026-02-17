@@ -19,7 +19,7 @@ FILES = {
 
     "my_modelword2vec.model.wv.vectors.npy": "18HZC9wCZSTJJFgPqqMhxEZL-_CMcf9O-",
 
-    "my_modelword2vec.model.syn1neg.npy": "https://drive.google.com/file/d/1Pm_J8O3gvUDci_dr-LXy2rk8P3EhYc21" 
+    "my_modelword2vec.model.syn1neg.npy": "1Pm_J8O3gvUDci_dr-LXy2rk8P3EhYc21" 
 }
 
 def download_models():
@@ -43,6 +43,7 @@ download_models()
 def download_nltk():
 
     nltk.download("punkt", download_dir=NLTK_DIR)
+    nltk.download("punkt_tab", download_dir=NLTK_DIR)
     nltk.download("stopwords", download_dir=NLTK_DIR)
     nltk.download("wordnet", download_dir=NLTK_DIR)
 
@@ -423,15 +424,15 @@ def load_models():
     from gensim.models import Word2Vec
     import pickle
 
-    modelword2vec = Word2Vec.load("models/my_modelword2vec.model")
+    model_path = os.path.join(MODEL_DIR, "my_modelword2vec.model")
+    rf_path = os.path.join(MODEL_DIR, "my_rf_model.pkl")
 
-    with open("models/my_rf_model.pkl", "rb") as f:
+    modelword2vec = Word2Vec.load(model_path)
+
+    with open(rf_path, "rb") as f:
         clf = pickle.load(f)
 
     return modelword2vec, clf
-
-
-modelword2vec, clf = load_models()
 
 # -------------------------
 # Streamlit UI

@@ -354,8 +354,9 @@ def preprocess2(text):
 
 
 
-def vectorize_question_pair(q1, q2, model, size=300):
+def vectorize_question_pair(q1, q2, model):
 
+    size = model.vector_size
     q1_tokens = preprocess2(q1)
     q2_tokens = preprocess2(q2)
 
@@ -412,7 +413,7 @@ def query_point_creator(q1, q2):
     q1_word2vec, q2_word2vec = vectorize_question_pair(q1, q2, modelword2vec, 300)
 
 
-    return np.hstack((np.array(input_query).reshape(1, 22), q1_word2vec.reshape(1, 300), q2_word2vec.reshape(1, 300)))
+    return np.hstack((np.array(input_query).reshape(1, 22), q1_word2vec.reshape(1, size), q2_word2vec.reshape(1, size)))
 
 
 # -------------------------

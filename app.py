@@ -1,5 +1,6 @@
 import os
 import gdown
+import nltk
 
 BASE_DIR = "data"
 
@@ -37,7 +38,7 @@ def download_models():
 
 
 download_models()
-import nltk
+
 
 def download_nltk():
 

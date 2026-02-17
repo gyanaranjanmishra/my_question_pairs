@@ -19,8 +19,8 @@ FILES = {
 
     "my_modelword2vec.model.wv.vectors.npy": "18HZC9wCZSTJJFgPqqMhxEZL-_CMcf9O-",
 
-    "my_modelword2vec.model.syn1neg.npy": "1Pm_J8O3gvUDci_dr-LXy2rk8P3EhYc21" 
-}
+    "my_modelword2vec.model.syn1neg.npy": "1Pm_J8O3gvUDci_dr-LXy2rk8P3EhYc21", 
+}    
 
 def download_models():
 

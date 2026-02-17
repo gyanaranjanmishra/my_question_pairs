@@ -38,6 +38,25 @@ def download_models():
 
 download_models()
 
+# -------------------------
+# Load Models
+# -------------------------
+@st.cache_resource
+def load_models():
+
+    from gensim.models import Word2Vec
+    import pickle
+
+    model_path = os.path.join(MODEL_DIR, "my_modelword2vec.model")
+    rf_path = os.path.join(MODEL_DIR, "my_rf_model.pkl")
+
+    modelword2vec = Word2Vec.load(model_path)
+
+    with open(rf_path, "rb") as f:
+        clf = pickle.load(f)
+
+    return modelword2vec, clf
+
 
 def download_nltk():
 
@@ -415,24 +434,7 @@ def query_point_creator(q1, q2):
     return np.hstack((np.array(input_query).reshape(1, 22), q1_word2vec.reshape(1, size), q2_word2vec.reshape(1, size)))
 
 
-# -------------------------
-# Load Models
-# -------------------------
-@st.cache_resource
-def load_models():
 
-    from gensim.models import Word2Vec
-    import pickle
-
-    model_path = os.path.join(MODEL_DIR, "my_modelword2vec.model")
-    rf_path = os.path.join(MODEL_DIR, "my_rf_model.pkl")
-
-    modelword2vec = Word2Vec.load(model_path)
-
-    with open(rf_path, "rb") as f:
-        clf = pickle.load(f)
-
-    return modelword2vec, clf
 
 # -------------------------
 # Streamlit UI

@@ -1,9 +1,15 @@
 import os
 import gdown
 
-MODEL_DIR = "models"
-os.makedirs(MODEL_DIR, exist_ok=True)
+BASE_DIR = "data"
 
+MODEL_DIR = os.path.join(BASE_DIR, "models")
+NLTK_DIR = os.path.join(BASE_DIR, "nltk")
+
+os.makedirs(MODEL_DIR, exist_ok=True)
+os.makedirs(NLTK_DIR, exist_ok=True)
+
+nltk.data.path.append(NLTK_DIR)
 
 FILES = {
     "my_rf_model.pkl": "1aC6O164kYnSHeq0x1TKDYZM7DOfgCs3G",
@@ -33,7 +39,14 @@ def download_models():
 download_models()
 import nltk
 
-nltk.data.path.append(os.path.expanduser("~/nltk_data"))
+def download_nltk():
+
+    nltk.download("punkt", download_dir=NLTK_DIR)
+    nltk.download("stopwords", download_dir=NLTK_DIR)
+    nltk.download("wordnet", download_dir=NLTK_DIR)
+
+
+download_nltk()
 
 import streamlit as st
 import pickle

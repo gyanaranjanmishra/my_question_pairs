@@ -1,7 +1,8 @@
 streamlit
-sklearn
+scikit-learn
 fuzzywuzzy
 distance
 bs4
-gensim
-ntlk
+gensim==4.2.0
+nltk
+numpy==1.26.4

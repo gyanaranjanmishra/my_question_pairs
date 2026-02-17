@@ -307,7 +307,7 @@ def preprocess2(text):
 
 
 
-def vectorize_question_pair(q1, q2, model, size=100):
+def vectorize_question_pair(q1, q2, model, size=300):
 
     q1_tokens = preprocess2(q1)
     q2_tokens = preprocess2(q2)
@@ -317,7 +317,7 @@ def vectorize_question_pair(q1, q2, model, size=100):
         vecs = []
 
         for w in tokens:
-            if w in model.wv:          # ✅ check first
+            if w in model.wv:          # check first for presence of tokens in model
                 vecs.append(model.wv[w])
 
         if len(vecs) == 0:
@@ -362,10 +362,10 @@ def query_point_creator(q1, q2):
     input_query.extend(fuzzy_features)
 
     # fasttext feature vectors for q1 and q2
-    q1_word2vec, q2_word2vec = vectorize_question_pair(q1, q2, modelword2vec, 100)
+    q1_word2vec, q2_word2vec = vectorize_question_pair(q1, q2, modelword2vec, 300)
 
 
-    return np.hstack((np.array(input_query).reshape(1, 22), q1_word2vec.reshape(1, 100), q2_word2vec.reshape(1, 100)))
+    return np.hstack((np.array(input_query).reshape(1, 22), q1_word2vec.reshape(1, 300), q2_word2vec.reshape(1, 300)))
 
 
 # -------------------------
@@ -374,11 +374,11 @@ def query_point_creator(q1, q2):
 @st.cache_resource
 def load_models():
 
-    # Load Word2Vec model
-    with open("my_modelword2vec.pkl", "rb") as f:
-        modelword2vec = pickle.load(f)
+    from gensim.models import Word2Vec
+    import pickle
 
-    # Load Random Forest model
+    modelword2vec = Word2Vec.load("my_modelword2vec.model")
+
     with open("my_rf_model.pkl", "rb") as f:
         clf = pickle.load(f)
 
@@ -423,3 +423,4 @@ if st.button("Predict"):
         st.write("### Result:")
         st.write(f"Prediction: **{pred}**")
         st.write(f"Confidence: **{prob:.2f}**")
+

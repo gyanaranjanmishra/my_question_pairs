@@ -1,8 +1,8 @@
 import os
 import gdown
 
-RF_FILE = "my_rf_model.model"
-W2V_FILE = "my_modelword2vec.pkl"
+RF_FILE = "my_rf_model.pkl"
+W2V_FILE = "my_modelword2vec.model"
 
 
 RF_ID = "1aC6O164kYnSHeq0x1TKDYZM7DOfgCs3G"

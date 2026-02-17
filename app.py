@@ -433,7 +433,7 @@ def query_point_creator(q1, q2):
     # fasttext feature vectors for q1 and q2
     q1_word2vec, q2_word2vec = vectorize_question_pair(q1, q2, modelword2vec)
 
-    st.success("preprocess Complete!")
+    
     return np.hstack((np.array(input_query).reshape(1, 22), q1_word2vec.reshape(1, size), q2_word2vec.reshape(1, size)))
 
 

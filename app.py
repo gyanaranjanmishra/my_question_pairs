@@ -465,7 +465,7 @@ if st.button("Predict"):
 
         with st.spinner("Processing..."):
 
-            X= query_point_creator(q1, q2)
+            X= query_point_creator(q1, q2,modelword2vec)
             st.write("X shape:", X.shape)
 
             pred = clf.predict(X)[0]

@@ -88,7 +88,7 @@ def load_models():
 
     return modelword2vec, clf
 
-
+load_models()
 
 # -------------------------
 # Preprocessing
